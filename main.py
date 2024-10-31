@@ -17,9 +17,10 @@ async def get_candle(pair, timeframe):
 
 async def trade(pair, dir, amount, period,type):
     trade = await client.trade(dir, amount, period, pair,type)
-    # dir = "up"/"down", amount = 1, period = "60", pair = "EURGBP" period should be in seconds
+    # dir = "up"/"down", amount = 1, period = "60", pair = "EURGBP_OTC" period should be in seconds
     if trade:
         print("Trade placed.",trade)
+        print(f"Current {type.upper()} balance is {await check_balance(type)} ")
 
 async def get_profitability(pair):  # Period should be in seconds
     profitability = await client.get_profitability(pair)
@@ -27,14 +28,16 @@ async def get_profitability(pair):  # Period should be in seconds
 
 async def check_balance(type):#demo or real
     balance = await client.get_balance(type)
-    print(f"{type} Balance is: {balance}") 
+
+    print(f"{type.upper()} Balance is: {balance}") 
+    return balance
 
 async def main():
     await client.connect()
     await check_balance('demo') 
-    # await get_candle("EURGBP", 60)                                
-    # await trade("EURGBP", "up", 1, 60,'demo')
-    # await get_profitability("EURGBP")
+    await get_candle("EURGBP_OTC", 60)                                
+    await trade("EURGBP_OTC", "up", 1, 60,'demo')
+    await get_profitability("EURGBP_OTC")
     await client.close()
 
 
