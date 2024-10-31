@@ -74,7 +74,7 @@ class Olymptradeapi():
             print("WebSocket is closed. Connect the client first.")
             return None  # Exit the function if websocket is closed
 
-        await self.connect()  # Ensure connection is established
+       
         current_time = await self.get_current_time_utc()
         message_to_send = None
         if pair in VALID_PAIRS and timeframe in periods:
