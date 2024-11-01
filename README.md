@@ -18,7 +18,7 @@ async def main():
 
 
 ```
-#Rules
+## Rules
 
 Rule 1-: Login on you're firefox first with any id not matter if you're not login this will not work and yes make sure firefox is completely closed..
 
